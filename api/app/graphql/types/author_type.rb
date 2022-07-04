@@ -17,5 +17,9 @@ module Types
 
     field :coordinates, Types::CoordinatesType, null: false
     field :publication_years, [Int], null: false
+
+    def self.authorized?(object, context)
+      object.is_alive?
+    end
   end
 end

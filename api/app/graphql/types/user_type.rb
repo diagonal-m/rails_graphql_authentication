@@ -8,5 +8,9 @@ module Types
     field :is_superadmin, Boolean
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+
+    def self.visible?(context)
+      !!context[:current_user]
+    end
   end
 end

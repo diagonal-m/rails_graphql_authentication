@@ -10,7 +10,8 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     session = Session.find_by(key: request.headers['Authorization'])
     context = {
-      current_user: session&.user
+      current_user: session&.user,
+      session_id: session&.id
     }
     result = ApiSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
